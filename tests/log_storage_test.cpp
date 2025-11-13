@@ -9,11 +9,11 @@ TEST_CASE("Ingest single log entry")
 {
     std::string log_entry = "Default Log Entry";
 
-    const auto storage = new LogStorage();
+    LogStorage storage {};
 
-    storage->ingest_log_entry(log_entry);
+    storage.ingest_log_entry(log_entry);
 
-    auto last_entry = storage->get_last_entry();
+    auto last_entry = storage.get_last_entry();
 
     REQUIRE(last_entry.has_value());
     REQUIRE(last_entry.value() == log_entry);
@@ -21,9 +21,9 @@ TEST_CASE("Ingest single log entry")
 
 TEST_CASE("An empty log store returns nothing")
 {
-    const auto storage = new LogStorage();
+    LogStorage storage {};
 
-    const auto entry = storage->get_last_entry();
+    const auto entry = storage.get_last_entry();
 
     REQUIRE(!entry.has_value());
 }
