@@ -3,12 +3,14 @@
 #include <algorithm>
 #include <optional>
 
-void LogStorage::ingest_log_entry(const std::string& string)
+#include "LogEntry.h"
+
+void LogStorage::ingest_log_entry(LogEntry log_entry)
 {
-    m_entries.push_back(string);
+    m_entries.push_back(log_entry);
 }
 
-std::optional<std::string> LogStorage::last_entry()
+std::optional<LogEntry> LogStorage::last_entry()
 {
     if (m_entries.empty())
     {
@@ -18,7 +20,7 @@ std::optional<std::string> LogStorage::last_entry()
     return m_entries.back();
 }
 
-std::vector<std::string> LogStorage::last_entries(int count)
+std::vector<LogEntry> LogStorage::last_entries(int count)
 {
     if (m_entries.size() < count)
     {

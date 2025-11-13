@@ -1,6 +1,7 @@
 #include "LogEntry.h"
 
-LogEntry::LogEntry(const std::string& raw_data): m_raw_data(raw_data)
+LogEntry::LogEntry(std::string raw_data)
+    : m_raw_data(std::move(raw_data))
 {
     // empty
 }

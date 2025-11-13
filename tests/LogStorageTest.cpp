@@ -1,5 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 #include "../src/LogStorage.h"
+#include "../src/LogEntry.h"
 
 // Log data is streamed into the system as `Timestamp: Message`
 // When the data is ingested, it is stored in chronological order from oldest to newest
@@ -11,14 +12,14 @@ TEST_CASE("LogStorage")
 
     SECTION("Ingest single log entry")
     {
-        std::string log_entry = "Default Log Entry";
+        LogEntry log_entry { "Default Log Entry" };
 
         storage.ingest_log_entry(log_entry);
 
         auto last_entry = storage.last_entry();
 
         REQUIRE(last_entry.has_value());
-        REQUIRE(last_entry.value() == log_entry);
+        REQUIRE(last_entry.value().raw_data() == log_entry.raw_data());
     }
 
     SECTION("An empty log store returns nothing")
@@ -37,13 +38,13 @@ TEST_CASE("LogStorage")
 
     SECTION("Multiple log entries are retrieved")
     {
-        storage.ingest_log_entry("First Log Entry");
-        storage.ingest_log_entry("Second Log Entry");
+        storage.ingest_log_entry(LogEntry("First Log Entry"));
+        storage.ingest_log_entry(LogEntry("Second Log Entry"));
 
         const auto entries = storage.last_entries(2);
 
         REQUIRE(entries.size() == 2);
-        REQUIRE(entries[0] == "Second Log Entry");
-        REQUIRE(entries[1] == "First Log Entry");
+        REQUIRE(entries[0].raw_data() == "Second Log Entry");
+        REQUIRE(entries[1].raw_data() == "First Log Entry");
     }
 }

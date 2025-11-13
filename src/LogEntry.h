@@ -5,10 +5,10 @@
 class LogEntry
 {
 public:
-    explicit LogEntry(const std::string& raw_data);
+    explicit LogEntry(std::string raw_data);
 
     [[nodiscard]] const std::string& raw_data() const;
 
 private:
-    const std::string& m_raw_data;
+    std::string m_raw_data;
 };
