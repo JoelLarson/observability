@@ -28,6 +28,13 @@ TEST_CASE("LogStorage")
         REQUIRE(!entry.has_value());
     }
 
+    SECTION("last_entries is empty when no logs ingested")
+    {
+        const auto entries = storage.last_entries(1);
+
+        REQUIRE(entries.empty());
+    }
+
     SECTION("Multiple log entries are retrieved")
     {
         storage.ingest_log_entry("First Log Entry");

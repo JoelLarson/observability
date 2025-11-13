@@ -20,6 +20,11 @@ std::optional<std::string> LogStorage::last_entry()
 
 std::vector<std::string> LogStorage::last_entries(int count)
 {
+    if (m_entries.size() < count)
+    {
+        return m_entries;
+    }
+
     std::vector result(m_entries.end() - count, m_entries.end());
 
     std::ranges::reverse(result);
