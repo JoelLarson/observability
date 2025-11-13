@@ -16,5 +16,15 @@ TEST_CASE("Ingest single log entry")
 
     auto last_entry = storage->get_last_entry();
 
-    REQUIRE(last_entry == log_entry);
+    REQUIRE(last_entry.has_value());
+    REQUIRE(last_entry.value() == log_entry);
+}
+
+TEST_CASE("An empty log store returns nothing")
+{
+    const auto storage = new LogStorage();
+
+    const auto entry = storage->get_last_entry();
+
+    REQUIRE(!entry.has_value());
 }
