@@ -15,7 +15,7 @@ TEST_CASE("LogStorage")
 
         storage.ingest_log_entry(log_entry);
 
-        auto last_entry = storage.get_last_entry();
+        auto last_entry = storage.last_entry();
 
         REQUIRE(last_entry.has_value());
         REQUIRE(last_entry.value() == log_entry);
@@ -23,7 +23,7 @@ TEST_CASE("LogStorage")
 
     SECTION("An empty log store returns nothing")
     {
-        const auto entry = storage.get_last_entry();
+        const auto entry = storage.last_entry();
 
         REQUIRE(!entry.has_value());
     }

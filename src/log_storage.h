@@ -8,7 +8,7 @@ class LogStorage
 public:
     LogStorage() = default;
     void ingest_log_entry(const std::string& string);
-    std::optional<std::string> get_last_entry();
+    std::optional<std::string> last_entry();
     std::vector<std::string> get_last_entries(int count);
 
 private:

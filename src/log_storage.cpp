@@ -8,7 +8,7 @@ void LogStorage::ingest_log_entry(const std::string& string)
     m_entries.push_back(string);
 }
 
-std::optional<std::string> LogStorage::get_last_entry()
+std::optional<std::string> LogStorage::last_entry()
 {
     if (m_entries.empty())
     {
