@@ -22,9 +22,9 @@ std::optional<LogEntry> LogStorage::last_entry()
 
 std::vector<LogEntry> LogStorage::last_entries(const std::size_t count)
 {
-    if (m_entries.size() < count)
+    if (count == 0 || m_entries.empty())
     {
-        return m_entries;
+        return {};
     }
 
     const std::size_t size = m_entries.size();
@@ -32,10 +32,9 @@ std::vector<LogEntry> LogStorage::last_entries(const std::size_t count)
     const std::size_t actual_size = std::min(count, size);
 
     using Diff = std::vector<LogEntry>::difference_type;
+    const auto start_iterator = m_entries.end() - static_cast<Diff>(actual_size);
 
-    const auto iterator = m_entries.end() - static_cast<Diff>(actual_size);
-
-    std::vector result(iterator, m_entries.end());
+    std::vector result(start_iterator, m_entries.end());
 
     std::ranges::reverse(result);
 

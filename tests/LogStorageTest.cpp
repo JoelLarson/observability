@@ -47,4 +47,16 @@ TEST_CASE("LogStorage")
         REQUIRE(entries[0].raw_data() == "Second Log Entry");
         REQUIRE(entries[1].raw_data() == "First Log Entry");
     }
+
+    SECTION("Retrieve more log entries than are available")
+    {
+        storage.ingest_log_entry(LogEntry("First Log Entry"));
+        storage.ingest_log_entry(LogEntry("Second Log Entry"));
+
+        const auto entries = storage.last_entries(3);
+
+        REQUIRE(entries.size() == 2);
+        REQUIRE(entries[0].raw_data() == "Second Log Entry");
+        REQUIRE(entries[1].raw_data() == "First Log Entry");
+    }
 }
