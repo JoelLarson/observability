@@ -27,4 +27,16 @@ TEST_CASE("LogStorage")
 
         REQUIRE(!entry.has_value());
     }
+
+    SECTION("Multiple log entries are retrieved")
+    {
+        storage.ingest_log_entry("First Log Entry");
+        storage.ingest_log_entry("Second Log Entry");
+
+        const auto entries = storage.get_last_entries(2);
+
+        REQUIRE(entries.size() == 2);
+        REQUIRE(entries[0] == "Second Log Entry");
+        REQUIRE(entries[1] == "First Log Entry");
+    }
 }

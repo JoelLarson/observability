@@ -9,6 +9,7 @@ public:
     LogStorage() = default;
     void ingest_log_entry(const std::string& string);
     std::optional<std::string> get_last_entry();
+    std::vector<std::string> get_last_entries(int count);
 
 private:
     std::vector<std::string> m_entries;
