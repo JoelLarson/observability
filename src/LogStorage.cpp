@@ -20,14 +20,22 @@ std::optional<LogEntry> LogStorage::last_entry()
     return m_entries.back();
 }
 
-std::vector<LogEntry> LogStorage::last_entries(int count)
+std::vector<LogEntry> LogStorage::last_entries(const std::size_t count)
 {
     if (m_entries.size() < count)
     {
         return m_entries;
     }
 
-    std::vector result(m_entries.end() - count, m_entries.end());
+    const std::size_t size = m_entries.size();
+
+    const std::size_t actual_size = std::min(count, size);
+
+    using Diff = std::vector<LogEntry>::difference_type;
+
+    const auto iterator = m_entries.end() - static_cast<Diff>(actual_size);
+
+    std::vector result(iterator, m_entries.end());
 
     std::ranges::reverse(result);
 
