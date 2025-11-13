@@ -1,5 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
-#include "../src/log_storage.h"
+#include "../src/LogStorage.h"
 
 // Log data is streamed into the system as `Timestamp: Message`
 // When the data is ingested, it is stored in chronological order from oldest to newest

@@ -7,11 +7,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_library(core_lib)
-target_sources(core_lib PRIVATE src/log_storage.cpp)
+target_sources(core_lib PRIVATE src/LogStorage.cpp)
 target_include_directories(core_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 find_package(Catch2 3 REQUIRED)
-add_executable(tests tests/log_storage_test.cpp)
+add_executable(tests tests/LogStorageTest.cpp)
 target_link_libraries(tests PRIVATE core_lib Catch2::Catch2WithMain)
 
 include(CTest)
