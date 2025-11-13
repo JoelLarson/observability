@@ -4,7 +4,6 @@
 // Log data is streamed into the system as `Timestamp: Message`
 // When the data is ingested, it is stored in chronological order from oldest to newest
 // When retrieving the last 10 entries, the entries should be newest to oldest
-// Handle fetching when no logs are present
 
 TEST_CASE("Ingest single log entry")
 {
