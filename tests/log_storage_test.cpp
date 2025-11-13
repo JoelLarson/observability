@@ -33,7 +33,7 @@ TEST_CASE("LogStorage")
         storage.ingest_log_entry("First Log Entry");
         storage.ingest_log_entry("Second Log Entry");
 
-        const auto entries = storage.get_last_entries(2);
+        const auto entries = storage.last_entries(2);
 
         REQUIRE(entries.size() == 2);
         REQUIRE(entries[0] == "Second Log Entry");

@@ -18,7 +18,7 @@ std::optional<std::string> LogStorage::last_entry()
     return m_entries.back();
 }
 
-std::vector<std::string> LogStorage::get_last_entries(int count)
+std::vector<std::string> LogStorage::last_entries(int count)
 {
     std::vector result(m_entries.end() - count, m_entries.end());
 
