@@ -1,22 +1,24 @@
 #include "LogEntry.h"
 
-LogEntry::LogEntry(std::string raw_data)
-    : m_raw_data(std::move(raw_data))
+LogEntry::LogEntry(std::string message)
+    : m_message(std::move(message))
 {
     // empty
 }
 
-const std::string& LogEntry::raw_data() const
+LogEntry::LogEntry(std::string timestamp, std::string message)
+    : m_timestamp(std::move(timestamp)),
+      m_message(std::move(message))
 {
-    return m_raw_data;
+    // empty
 }
 
-std::string LogEntry::message() const
+const std::string& LogEntry::message() const
 {
-    return "Basic message";
+    return m_message;
 }
 
-std::string LogEntry::timestamp() const
+const std::string& LogEntry::timestamp() const
 {
-    return "2025-11-13 12:00:00";
+    return m_timestamp;
 }

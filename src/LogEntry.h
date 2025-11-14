@@ -5,12 +5,13 @@
 class LogEntry
 {
 public:
-    explicit LogEntry(std::string raw_data);
+    explicit LogEntry(std::string timestamp, std::string message);
+    explicit LogEntry(std::string message);
 
-    [[nodiscard]] const std::string& raw_data() const;
-    std::string message() const;
-    std::string timestamp() const;
+    [[nodiscard]] const std::string& timestamp() const;
+    [[nodiscard]] const std::string& message() const;
 
 private:
-    std::string m_raw_data;
+    std::string m_timestamp;
+    std::string m_message;
 };

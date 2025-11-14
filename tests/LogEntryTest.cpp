@@ -4,9 +4,9 @@
 
 TEST_CASE("LogEntry::raw_data()")
 {
-    std::string raw_message = "Log Message";
+    std::string message = "Log Message";
 
-    const LogEntry entry { raw_message };
+    const LogEntry entry { message };
 
-    REQUIRE(entry.raw_data() == raw_message);
+    REQUIRE(entry.message() == message);
 }

@@ -19,7 +19,7 @@ TEST_CASE("LogStorage")
         auto last_entry = storage.last_entry();
 
         REQUIRE(last_entry.has_value());
-        REQUIRE(last_entry.value().raw_data() == log_entry.raw_data());
+        REQUIRE(last_entry.value().message() == log_entry.message());
     }
 
     SECTION("An empty log store returns nothing")
@@ -44,8 +44,8 @@ TEST_CASE("LogStorage")
         const auto entries = storage.last_entries(2);
 
         REQUIRE(entries.size() == 2);
-        REQUIRE(entries[0].raw_data() == "Second Log Entry");
-        REQUIRE(entries[1].raw_data() == "First Log Entry");
+        REQUIRE(entries[0].message() == "Second Log Entry");
+        REQUIRE(entries[1].message() == "First Log Entry");
     }
 
     SECTION("Retrieve more log entries than are available")
@@ -56,7 +56,7 @@ TEST_CASE("LogStorage")
         const auto entries = storage.last_entries(3);
 
         REQUIRE(entries.size() == 2);
-        REQUIRE(entries[0].raw_data() == "Second Log Entry");
-        REQUIRE(entries[1].raw_data() == "First Log Entry");
+        REQUIRE(entries[0].message() == "Second Log Entry");
+        REQUIRE(entries[1].message() == "First Log Entry");
     }
 }

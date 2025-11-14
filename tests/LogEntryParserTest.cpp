@@ -12,7 +12,7 @@ TEST_CASE("LogEntryParser")
 
         const auto log_entry = parser.parse(raw_message);
 
-        REQUIRE(log_entry.raw_data() == raw_message);
+        REQUIRE(log_entry.message() == raw_message);
     }
 
     SECTION("Parse a timestamp")
