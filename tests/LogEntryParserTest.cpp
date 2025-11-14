@@ -15,6 +15,16 @@ TEST_CASE("LogEntryParser")
         REQUIRE(log_entry.message() == raw_message);
     }
 
+    SECTION("Parsing an empty timestamp")
+    {
+        const std::string raw_message = "[]";
+
+        const auto log_entry = parser.parse(raw_message);
+
+        REQUIRE(log_entry.message().empty());
+        REQUIRE(log_entry.timestamp().empty());
+    }
+
     SECTION("Parse a timestamp")
     {
         const std::string raw_message = "[2025-11-13 12:00:00] Basic message";
