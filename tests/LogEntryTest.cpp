@@ -2,11 +2,14 @@
 
 #include "../src/LogEntry.h"
 
-TEST_CASE("LogEntry::raw_data()")
+TEST_CASE("LogEntry")
 {
-    std::string message = "Log Message";
+    SECTION("Message is populated on construction")
+    {
+        std::string message = "Log Message";
 
-    const LogEntry entry { message };
+        const LogEntry entry { message };
 
-    REQUIRE(entry.message() == message);
+        REQUIRE(entry.message() == message);
+    }
 }
